@@ -1,0 +1,56 @@
+class AgileTimer
+  def initialize params
+    @drive_time = drive_time_in_seconds(params[:drive_time])
+    @participants = params[:participants]
+    @current_driver_index = -1
+  end
+
+  def is_participant_driving? participant
+    if no_driver?
+      participant_is_first?(participant)
+    else
+      current_driver == participant
+    end
+  end
+
+  def wait_for_timer
+    move_to_next_driver!
+    current_driver.speak_name_out_loud!
+    sleep @drive_time
+  end
+
+  private
+
+  def drive_time_in_seconds drive_time
+    (drive_time.to_i) * 60
+  end
+
+  def participant_is_first? participant
+    @participants.index(participant) == 0
+  end
+
+  def number_of_participants
+    @participants.length
+  end
+
+  def reached_end_of_participants?
+    @current_driver_index == number_of_participants - 1
+  end
+
+  def current_driver
+    @participants[@current_driver_index]
+  end
+
+  def no_driver?
+    @current_driver_index == -1
+  end
+
+  def move_to_next_driver!
+    if no_driver? || reached_end_of_participants?
+      @current_driver_index = 0
+    else
+      @current_driver_index += 1
+    end
+  end
+
+end
