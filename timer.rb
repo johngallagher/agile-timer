@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+require 'readline'
+
 Dir.glob('lib/**/*.rb') { |f| require_relative f }
 
 class Program
@@ -23,7 +28,7 @@ class Program
   def get_drive_time
     puts "Please enter minutes each person should drive for"
     while true
-      drive_time = gets.chomp
+      drive_time = Readline::readline('> ')
       if drive_time.is_numerical?
         clear_display
         return drive_time
@@ -37,7 +42,7 @@ class Program
     puts "Please enter driver names. Enter blank when finished"
     participants = []
     while true
-      participant_name = gets.chomp
+      participant_name = Readline::readline('> ')
       if participant_name.empty?
         clear_display
         return participants
