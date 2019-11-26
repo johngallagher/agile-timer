@@ -10,7 +10,6 @@ environments:
   - type: git
     title: Source Code
     uri: https://github.com/johngallagher/agile-timer
-environments:
   - type: production
     title: URL
     description: Web Application URL
