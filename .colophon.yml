@@ -6,6 +6,7 @@ about:
 contacts:
   - type: Developer
     name: John Gallagher
+    email: john@synapticmishap.co.uk
 environments:
   - type: git
     title: Source Code
